@@ -1,0 +1,59 @@
+
+h1 {
+	font-weight: bold;
+	font-size: 2.5em;
+	font-style: "Arial";
+}
+body {
+	width: 1000px;
+	background-color: #f5f5dc;
+	background-repeat: fixed;
+	margin: 100px 300px 200px 400px;
+	font-family: "Arial";
+
+}
+
+.refreshTweets {
+	margin: 5px 0;
+	font-size: 25px;
+	font-weight: 500;
+	color: 'black';
+	display: inline-block;
+	background-color: #3987c9;
+	padding: 6px 12px;
+	border: 1px solid #3987c9;
+	border-radius:15px;
+}
+
+input {
+	width: 90%;
+	padding: 10px;
+	font-size: 12px;
+	border: 1px solid #A9A9A9;
+	border-radius: 15px;
+	float: center;
+}
+
+
+.tweet {
+	margin: 20px 0;
+	color: blue;
+}
+
+.userName {
+	padding: 10px 0 10px 20px;
+	font-weight: bold;
+	color: black;
+}
+
+.userName:hover {
+	text-decoration: underline;
+}
+
+.timestamps {
+	font-style:"Arial"
+	float: right;
+	color: #788;
+	padding: 6px 12px;
+}
+
