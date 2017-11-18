@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>myTwittler</title> 
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <script src="jquery.timeago.js"></script>
@@ -9,7 +8,6 @@
   </head>
   <body>
     <div class="body">
-      <h1>Twittler</h1>
     </div>
     <script>
       
@@ -28,8 +26,8 @@
         $div.appendTo($body);
 
         var displayNewTweets = function(user) {
-         
-          if (user) {
+         $div.html('');
+          if (user === true) {
             var index = streams.home.length - 1;
           } else {
             var index = streams.users[user].length - 1;
@@ -40,19 +38,19 @@
             var $tweet = $('<div></div');
             $tweet.addClass('tweet');
 
-            //adding users to html
+            //Show users to html
             var $user = $('<a></a>');
-            $user.attr({'href':'#', 'data-user': tweet.user, 'class': 'userName'});
+            $user.attr({'href':'#', 'data-user': tweet.user, 'class': 'username'});
             $user.text('@' + tweet.user);
             $user.appendTo($tweet);
             
-            //adding messages
+            //Show messages
             $tweet.append(': ' + tweet.message);
             
-            // adding timestamps
+            // Show timestamps
             var $tweetTime = $('<span></span>');
             $tweetTime.addClass('timestamps');
-            var humanFriendlyTime = jQuery.timeago(tweet.created_at);//use of jquery pluggin
+            var humanFriendlyTime = $.timeago(tweet.created_at);//use of jquery pluggin
             $tweetTime.text(humanFriendlyTime);
             $tweetTime.appendTo($tweet);
 
@@ -61,24 +59,21 @@
           }
 
           // click on username to display timeline
-          $('.userName').on('click', function (event) {
-            event.preventDefault();
-            displayNewTweets($(this).data('user')); // not working properly
+          $('.username').on('click', function (event) {
+            displayNewTweets($(this).data('user')); 
           });
         };
 
-        displayNewTweets(true);
-
-        // click on New Twittles to display new messages
+        //click on New Twittles to display new messages
         $('.refreshTweets').on('click', function(event){
           event.preventDefault();
           displayNewTweets(true);
         });  
          
-         // allowing user to twittle  // need to debug
-        $('.input').keypress(function (event){
+         //allowing user to twittle  
+        $('input').keypress(function (event) {
           if(event.which === 15) {
-            window.visitor = 'newUser';
+            window.visitor = 'user';
             if(!streams.users[window.visitor]) {
               streams.users[window.visitor] = [];
             }
@@ -93,27 +88,3 @@
     </script>
   </body>
 </html>
-
-
-<!-- var index = streams.home.length - 1;
-          while(index >= 0) {
-            var tweet = streams.home[index];
-             var $tweet = $(
-              '<div class="userTweet row span5">' +
-                '<div class="row">' +
-                  '<div class="userName span2"><a href="#" class =' +
-                    tweet.user + '>' + '@' + tweet.user + ' posted:' +
-                  '</a></div>' +
-                '</div>' + 
-                '<div class="row">' +
-                  '<p class="span5">' +
-                    tweet.message +
-                  '</p>' +
-                '</div>' +
-                '<div class="timestamps span6 text-left">' + tweet.created_at+ 
-                 '</div>' +
-              '</div>');
-            //$tweet.text('@' + tweet.user + ': ' + tweet.message);
-            $tweet.appendTo($body);
-            index -= 1;   
-          } -->
